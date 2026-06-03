@@ -25,7 +25,7 @@ export const LESSONS: Lesson[] = [
     summary: "Get comfortable holding and feeling a basketball.",
     description:
       "The very first step. Learn how to hold the ball with finger pads (not palms), get a feel for its weight, and do gentle hand-slap warm-ups. No dribbling yet — this lesson is just about confidence with the ball in your hands.",
-    youtubeId: "1Pmcm00OFcs",
+    youtubeId: "6_YOFhrPdPI",
     drills: [
       "Slap the ball 20 times between both hands",
       "Around-the-waist circles, 30 seconds each direction",
@@ -44,7 +44,7 @@ export const LESSONS: Lesson[] = [
     summary: "Your first real dribble. Eyes up, fingers down.",
     description:
       "Learn to push the ball into the floor (don't slap it), keep the knees bent, and look forward instead of staring at the ball. We use the wall-target trick to train eyes-up habits from day one.",
-    youtubeId: "ALsSXBA2uUI",
+    youtubeId: "CMQp0bwjokw",
     drills: [
       "Right-hand dribble for 30 seconds, eyes on a wall target",
       "Left-hand dribble for 30 seconds, eyes on a wall target",
@@ -63,7 +63,7 @@ export const LESSONS: Lesson[] = [
     summary: "The athletic position every move starts from.",
     description:
       "Feet shoulder-width, knees bent, ball at the hip, eyes up. From this stance, a player can shoot, pass, or drive — that's why it's called triple threat. Master this and every future skill becomes easier.",
-    youtubeId: "wlqIqLfvjGI",
+    youtubeId: "SqmRrYChlZs",
     drills: [
       "Hold triple threat for 30 seconds, 3 sets",
       "Pivot drill: front foot stays, swing back foot 90°, 10 reps each side",
@@ -82,7 +82,7 @@ export const LESSONS: Lesson[] = [
     summary: "Build a clean shot motion before adding distance.",
     description:
       "We start one big step from the rim. One-hand shooting drill (BEEF method: Balance, Eyes, Elbow, Follow-through). The goal isn't to score from far — it's to groove the right motion that scales up later.",
-    youtubeId: "TQfcOYWaR8E",
+    youtubeId: "2f9YBKAxmqQ",
     drills: [
       "One-hand form shots from 3 feet, 25 makes",
       "Two-hand form shots, 25 makes",
@@ -101,7 +101,7 @@ export const LESSONS: Lesson[] = [
     summary: "Train both hands at once to fix the weak hand.",
     description:
       "For players with ~1 year of experience. Two balls force the weak hand to keep up with the strong hand. Start with same-time dribbles, then alternating, then high-low.",
-    youtubeId: "tCZv5VW1B6E",
+    youtubeId: "znK1nTqRcHk",
     drills: [
       "Same-time pounds: both balls hit the floor together, 30 reps",
       "Alternating: ball A up while ball B is down, 30 reps",
@@ -120,7 +120,7 @@ export const LESSONS: Lesson[] = [
     summary: "The bread-and-butter move to change direction.",
     description:
       "Push the ball low and across the body, hip-to-hip, while shifting weight onto the new foot. Slow reps first, then add a small explosion step on the cross.",
-    youtubeId: "1xYJCK_d8XE",
+    youtubeId: "fzySl4Vqfwk",
     drills: [
       "Stationary crossover, hip to hip, 30 reps each direction",
       "Walking crossover up and down the floor, 3 lengths",
@@ -139,7 +139,7 @@ export const LESSONS: Lesson[] = [
     summary: "Stop on balance, pivot without traveling.",
     description:
       "Two-foot jump stop on the catch means either foot can pivot. Practice catching with momentum and freezing the body. This single skill prevents most youth turnovers.",
-    youtubeId: "Vs3KaJWdM-A",
+    youtubeId: "S7X5E-rtjjA",
     drills: [
       "Jog and jump stop on a line, 15 reps",
       "Catch on the move, jump stop, pivot 180°, 10 reps each direction",
@@ -158,7 +158,7 @@ export const LESSONS: Lesson[] = [
     summary: "Shoot off the dribble in rhythm.",
     description:
       "Dribble, plant, rise, release — all in one motion. We chain stationary form shooting (Lesson 3) with the jump stop (Lesson 6) to build a smooth pull-up.",
-    youtubeId: "_Q3wMOWnNDM",
+    youtubeId: "InmnmKYCI2s",
     drills: [
       "One-dribble pull-up from elbow, 20 makes",
       "Two-dribble pull-up from wing, 20 makes",
@@ -177,7 +177,7 @@ export const LESSONS: Lesson[] = [
     summary: "Two-step deception at the rim.",
     description:
       "Step one direction to commit the defender, step the other way to finish. Legal as long as you don't pick up the dribble too early. Great counter when defenders cut off the straight drive.",
-    youtubeId: "1ItOpx5b9P4",
+    youtubeId: "9VBlvKUjYUM",
     drills: [
       "Slow walk-through: step right, step left, finish, 10 reps",
       "Cone euro: drive at cone, euro past it, layup, 10 each side",
@@ -196,7 +196,7 @@ export const LESSONS: Lesson[] = [
     summary: "Create space, rise, shoot over the contest.",
     description:
       "Dribble at the defender, plant the front foot, push back hard, land on balance, rise into the shot. Hardest move on the list — requires strong legs and the form shot from Lesson 3.",
-    youtubeId: "P3VnNqZ8M9k",
+    youtubeId: "-CTGDhPV4S0",
     drills: [
       "Stationary step-back, 20 reps each side",
       "One-dribble step-back from wing, 15 makes",
