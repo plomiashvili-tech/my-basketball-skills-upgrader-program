@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { LESSONS } from "@/lib/lessons";
+import { useTranslation } from "@/components/LanguageContext";
 
 const childName = "Alex";
 
@@ -13,28 +16,27 @@ const totalMinutes = 27;
 const lessonsTouched = mockProgress.filter((p) => p.completedDrills > 0).length;
 
 export default function ParentDashboard() {
+  const { t } = useTranslation();
+
   return (
     <div className="container-narrow space-y-10 py-12 sm:py-16">
       <header className="space-y-3">
-        <span className="pill">Parent dashboard · Demo data</span>
-        <h1 className="text-3xl font-bold sm:text-4xl">{childName}'s training</h1>
-        <p className="text-white/70">
-          See which lessons your child watched, which drills they finished, and how long they spent
-          training. Live webcam view is coming with the 6 and 12-month plans.
-        </p>
+        <span className="pill">{t.parent.badge}</span>
+        <h1 className="text-3xl font-bold sm:text-4xl">{childName}{t.parent.trainingOf}</h1>
+        <p className="text-white/70">{t.parent.desc}</p>
       </header>
 
       <section className="grid gap-4 sm:grid-cols-3">
-        <Stat label="Lessons started this week" value={lessonsTouched.toString()} />
-        <Stat label="Total training time" value={`${totalMinutes} min`} />
-        <Stat label="Current track" value="Beginner" />
+        <Stat label={t.parent.lessonsStarted} value={lessonsTouched.toString()} />
+        <Stat label={t.parent.totalTime} value={`${totalMinutes} ${t.lessonDetail.min}`} />
+        <Stat label={t.parent.currentTrack} value={t.levelLabel.beginner} />
       </section>
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">Recent activity</h2>
+          <h2 className="text-xl font-semibold">{t.parent.recentActivity}</h2>
           <Link href="/lessons" className="text-sm text-court-300 hover:text-court-200">
-            See all lessons →
+            {t.parent.seeAll}
           </Link>
         </div>
         <div className="space-y-3">
@@ -50,12 +52,12 @@ export default function ParentDashboard() {
               >
                 <div className="flex-1">
                   <p className="font-semibold">{lesson.title}</p>
-                  <p className="text-sm text-white/60">Last seen: {p.lastSeen}</p>
+                  <p className="text-sm text-white/60">{t.parent.lastSeen} {p.lastSeen}</p>
                 </div>
                 <div className="sm:w-64">
                   <div className="flex items-center justify-between text-xs text-white/70">
                     <span>
-                      {p.completedDrills} / {p.totalDrills} drills
+                      {p.completedDrills} / {p.totalDrills} {t.parent.drills}
                     </span>
                     <span>{pct}%</span>
                   </div>
@@ -74,13 +76,10 @@ export default function ParentDashboard() {
 
       <section className="card flex flex-col gap-3 bg-gradient-to-br from-court-500/15 to-transparent sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-semibold">Live webcam view</h2>
-          <p className="mt-1 text-sm text-white/70">
-            Watch your child do drills live from your phone or computer. Available with the 6 and
-            12-month plans.
-          </p>
+          <h2 className="text-lg font-semibold">{t.parent.webcamTitle}</h2>
+          <p className="mt-1 text-sm text-white/70">{t.parent.webcamDesc}</p>
         </div>
-        <span className="pill">Coming soon</span>
+        <span className="pill">{t.parent.comingSoon}</span>
       </section>
     </div>
   );

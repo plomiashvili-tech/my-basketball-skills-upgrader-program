@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { Lesson } from "@/lib/lessons";
+import { useTranslation } from "./LanguageContext";
 
 const levelStyles: Record<Lesson["level"], string> = {
   beginner: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
@@ -8,14 +11,15 @@ const levelStyles: Record<Lesson["level"], string> = {
 };
 
 export function LessonCard({ lesson }: { lesson: Lesson }) {
+  const { t } = useTranslation();
   const thumb = `https://i.ytimg.com/vi/${lesson.youtubeId}/hqdefault.jpg`;
+
   return (
     <Link
       href={`/lessons/${lesson.slug}`}
       className="group block overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition hover:border-white/20 hover:bg-white/10"
     >
       <div className="relative aspect-video w-full overflow-hidden bg-slate-900">
-        {/* Use img (not next/image) to avoid configuring loader for YouTube thumbs */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={thumb}
@@ -24,7 +28,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
         />
         <div className="absolute inset-0 grid place-items-center bg-black/40 opacity-0 transition group-hover:opacity-100">
           <span className="rounded-full bg-court-500 px-4 py-2 text-sm font-semibold text-slate-950">
-            ▶ Play lesson
+            {t.card.play}
           </span>
         </div>
       </div>
@@ -33,10 +37,10 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
           <span
             className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide ${levelStyles[lesson.level]}`}
           >
-            {lesson.level}
+            {t.levelLabel[lesson.level]}
           </span>
-          <span className="pill">{lesson.durationMin} min</span>
-          <span className="pill">Age {lesson.ageMin}+</span>
+          <span className="pill">{lesson.durationMin} {t.card.min}</span>
+          <span className="pill">{t.card.age} {lesson.ageMin}+</span>
         </div>
         <h3 className="text-lg font-semibold leading-tight">{lesson.title}</h3>
         <p className="text-sm text-white/70">{lesson.summary}</p>

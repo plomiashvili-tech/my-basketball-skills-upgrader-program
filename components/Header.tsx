@@ -1,12 +1,12 @@
-import Link from "next/link";
+"use client";
 
-const NAV = [
-  { href: "/lessons", label: "Lessons" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/parent", label: "Parent dashboard" },
-];
+import Link from "next/link";
+import { useTranslation } from "./LanguageContext";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
+  const { t } = useTranslation();
+
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/80 backdrop-blur">
       <div className="container-narrow flex h-16 items-center justify-between">
@@ -17,22 +17,35 @@ export function Header() {
           <span>Basketball Skills Upgrader</span>
         </Link>
         <nav className="hidden items-center gap-2 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-3 py-1.5 text-sm text-white/80 transition hover:bg-white/5 hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Link
+            href="/lessons"
+            className="rounded-full px-3 py-1.5 text-sm text-white/80 transition hover:bg-white/5 hover:text-white"
+          >
+            {t.nav.lessons}
+          </Link>
+          <Link
+            href="/pricing"
+            className="rounded-full px-3 py-1.5 text-sm text-white/80 transition hover:bg-white/5 hover:text-white"
+          >
+            {t.nav.pricing}
+          </Link>
+          <Link
+            href="/parent"
+            className="rounded-full px-3 py-1.5 text-sm text-white/80 transition hover:bg-white/5 hover:text-white"
+          >
+            {t.nav.parentDashboard}
+          </Link>
+          <LanguageSwitcher />
           <Link href="/pricing" className="btn-primary ml-2">
-            Start free
+            {t.nav.startFree}
           </Link>
         </nav>
-        <Link href="/pricing" className="btn-primary md:hidden">
-          Start
-        </Link>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <Link href="/pricing" className="btn-primary">
+            {t.nav.start}
+          </Link>
+        </div>
       </div>
     </header>
   );

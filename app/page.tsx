@@ -1,33 +1,15 @@
-import Link from "next/link";
-import { LESSONS, LEVEL_LABEL, LEVEL_DESCRIPTION, type SkillLevel } from "@/lib/lessons";
-import { LessonCard } from "@/components/LessonCard";
+"use client";
 
-const features = [
-  {
-    title: "Starts from Lesson 0",
-    body: "Brand-new player? We assume nothing. The first lesson is literally how to hold the ball. Every later skill builds on the last.",
-    icon: "🏀",
-  },
-  {
-    title: "Flexible for experienced kids",
-    body: "Already played for 1–2 years? Skip the basics. Take a quick placement check and jump into intermediate moves that fix the weak hand and add real game skills.",
-    icon: "⚡",
-  },
-  {
-    title: "Every lesson has video + drills",
-    body: "Watch the demo, then follow the drill list. Short videos (10–25 minutes) that fit between school and dinner.",
-    icon: "📺",
-  },
-  {
-    title: "Parents stay in the loop",
-    body: "A simple dashboard shows which lessons your child watched, time spent, and which drills they marked complete. Live webcam view is coming next.",
-    icon: "👪",
-  },
-];
+import Link from "next/link";
+import { LESSONS, type SkillLevel } from "@/lib/lessons";
+import { LessonCard } from "@/components/LessonCard";
+import { useTranslation } from "@/components/LanguageContext";
 
 const SKILL_ORDER: SkillLevel[] = ["beginner", "intermediate", "advanced"];
 
 export default function HomePage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-white/10">
@@ -37,25 +19,21 @@ export default function HomePage() {
         />
         <div className="container-narrow relative grid gap-10 py-20 lg:grid-cols-2 lg:py-28">
           <div className="space-y-6">
-            <span className="pill">Ages 7 and up · Step-by-step training</span>
+            <span className="pill">{t.home.badge}</span>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Upgrade your basketball skills <span className="text-court-400">one lesson at a time</span>.
+              {t.home.heroTitle}{" "}
+              <span className="text-court-400">{t.home.heroTitleHighlight}</span>.
             </h1>
-            <p className="max-w-xl text-lg text-white/75">
-              From holding the ball for the first time to a step-back three. Built for kids age 7 and up,
-              flexible enough for players already 1–2 years in. Parents follow along on a simple dashboard.
-            </p>
+            <p className="max-w-xl text-lg text-white/75">{t.home.heroDesc}</p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link href="/pricing" className="btn-primary">
-                Start free for 1 month
+                {t.home.startFree}
               </Link>
               <Link href="/lessons" className="btn-ghost">
-                Browse lessons
+                {t.home.browseLessons}
               </Link>
             </div>
-            <p className="text-sm text-white/50">
-              Beginners get the first month free. 3, 6, and 12-month programs available.
-            </p>
+            <p className="text-sm text-white/50">{t.home.freePlanNote}</p>
           </div>
           <div className="relative">
             <div className="card space-y-3">
@@ -69,11 +47,11 @@ export default function HomePage() {
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-wider text-white/50">First lesson, free</p>
+                  <p className="text-xs uppercase tracking-wider text-white/50">{t.home.firstLesson}</p>
                   <p className="font-semibold">{LESSONS[0].title}</p>
                 </div>
                 <Link href={`/lessons/${LESSONS[0].slug}`} className="btn-primary">
-                  Watch
+                  {t.home.watch}
                 </Link>
               </div>
             </div>
@@ -84,10 +62,8 @@ export default function HomePage() {
       <section className="border-b border-white/10 py-20">
         <div className="container-narrow space-y-10">
           <div className="max-w-2xl">
-            <h2 className="text-3xl font-bold sm:text-4xl">Built for every starting point</h2>
-            <p className="mt-3 text-white/70">
-              Pick the track that matches your current level. You can re-take the placement at any time.
-            </p>
+            <h2 className="text-3xl font-bold sm:text-4xl">{t.home.tracksTitle}</h2>
+            <p className="mt-3 text-white/70">{t.home.tracksDesc}</p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {SKILL_ORDER.map((level) => (
@@ -96,10 +72,10 @@ export default function HomePage() {
                 href={`/lessons?level=${level}`}
                 className="card flex flex-col gap-3 transition hover:bg-white/10"
               >
-                <span className="pill w-fit">{LEVEL_LABEL[level]}</span>
-                <p className="text-white/75">{LEVEL_DESCRIPTION[level]}</p>
+                <span className="pill w-fit">{t.levelLabel[level]}</span>
+                <p className="text-white/75">{t.levelDescription[level]}</p>
                 <span className="mt-auto text-sm font-semibold text-court-300">
-                  See {level} lessons →
+                  {t.home.seeLessons.replace("{level}", t.levelLabel[level])}
                 </span>
               </Link>
             ))}
@@ -110,10 +86,10 @@ export default function HomePage() {
       <section className="border-b border-white/10 py-20">
         <div className="container-narrow space-y-10">
           <div className="max-w-2xl">
-            <h2 className="text-3xl font-bold sm:text-4xl">Why parents and kids choose us</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">{t.home.whyTitle}</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {features.map((f) => (
+            {t.features.map((f) => (
               <div key={f.title} className="card">
                 <div className="mb-2 text-3xl" aria-hidden>
                   {f.icon}
@@ -130,11 +106,11 @@ export default function HomePage() {
         <div className="container-narrow space-y-10">
           <div className="flex items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-3xl font-bold sm:text-4xl">Sample lessons</h2>
-              <p className="mt-3 text-white/70">A peek at how each lesson is structured.</p>
+              <h2 className="text-3xl font-bold sm:text-4xl">{t.home.sampleTitle}</h2>
+              <p className="mt-3 text-white/70">{t.home.sampleDesc}</p>
             </div>
             <Link href="/lessons" className="btn-ghost hidden sm:inline-flex">
-              All lessons
+              {t.home.allLessons}
             </Link>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -149,13 +125,11 @@ export default function HomePage() {
         <div className="container-narrow">
           <div className="card flex flex-col items-start gap-4 bg-gradient-to-br from-court-500/15 to-transparent sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="text-2xl font-bold">Ready to start?</h2>
-              <p className="mt-1 text-white/70">
-                Beginners get the first month free. No credit card needed.
-              </p>
+              <h2 className="text-2xl font-bold">{t.home.ctaTitle}</h2>
+              <p className="mt-1 text-white/70">{t.home.ctaDesc}</p>
             </div>
             <Link href="/pricing" className="btn-primary">
-              See plans
+              {t.home.ctaButton}
             </Link>
           </div>
         </div>

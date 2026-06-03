@@ -1,15 +1,18 @@
+"use client";
+
 import Link from "next/link";
-import { LESSONS, LEVEL_LABEL, LEVEL_DESCRIPTION, type SkillLevel } from "@/lib/lessons";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { LESSONS, type SkillLevel } from "@/lib/lessons";
 import { LessonCard } from "@/components/LessonCard";
+import { useTranslation } from "@/components/LanguageContext";
 
 const LEVELS: (SkillLevel | "all")[] = ["all", "beginner", "intermediate", "advanced"];
 
-export default function LessonsPage({
-  searchParams,
-}: {
-  searchParams: { level?: string };
-}) {
-  const rawLevel = (searchParams.level as SkillLevel | "all") ?? "all";
+function LessonsContent() {
+  const { t } = useTranslation();
+  const searchParams = useSearchParams();
+  const rawLevel = (searchParams.get("level") as SkillLevel | "all") ?? "all";
   const activeLevel: SkillLevel | "all" = LEVELS.includes(rawLevel) ? rawLevel : "all";
 
   const lessons =
@@ -20,19 +23,15 @@ export default function LessonsPage({
   return (
     <div className="container-narrow space-y-10 py-12 sm:py-16">
       <div className="max-w-3xl space-y-3">
-        <span className="pill">Lessons library</span>
-        <h1 className="text-3xl font-bold sm:text-4xl">Pick a track that fits the player</h1>
-        <p className="text-white/70">
-          Beginners should start at the top of the beginner track (Lesson 0). Already played 1–2 years?
-          The intermediate track has shortcuts that skip the basics and focus on cleaning up the weak
-          hand, change-of-direction moves, and shooting under control.
-        </p>
+        <span className="pill">{t.lessons.badge}</span>
+        <h1 className="text-3xl font-bold sm:text-4xl">{t.lessons.pageTitle}</h1>
+        <p className="text-white/70">{t.lessons.desc}</p>
       </div>
 
       <div className="flex flex-wrap gap-2">
         {LEVELS.map((level) => {
           const active = activeLevel === level;
-          const label = level === "all" ? "All lessons" : LEVEL_LABEL[level];
+          const label = level === "all" ? t.lessons.allLessons : t.levelLabel[level];
           return (
             <Link
               key={level}
@@ -52,9 +51,9 @@ export default function LessonsPage({
       {activeLevel !== "all" && (
         <div className="card">
           <p className="text-sm uppercase tracking-wide text-white/50">
-            {LEVEL_LABEL[activeLevel]}
+            {t.levelLabel[activeLevel]}
           </p>
-          <p className="mt-2 text-white/80">{LEVEL_DESCRIPTION[activeLevel]}</p>
+          <p className="mt-2 text-white/80">{t.levelDescription[activeLevel]}</p>
         </div>
       )}
 
@@ -65,8 +64,16 @@ export default function LessonsPage({
       </div>
 
       {lessons.length === 0 && (
-        <div className="card text-center text-white/70">No lessons yet at this level.</div>
+        <div className="card text-center text-white/70">{t.lessons.noLessons}</div>
       )}
     </div>
+  );
+}
+
+export default function LessonsPage() {
+  return (
+    <Suspense fallback={<div className="container-narrow py-16 text-white/50">Loading…</div>}>
+      <LessonsContent />
+    </Suspense>
   );
 }

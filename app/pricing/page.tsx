@@ -1,35 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { PLANS } from "@/lib/plans";
-
-const faqs = [
-  {
-    q: "Is the free month really free?",
-    a: "Yes. Beginners can take their entire first month with no credit card on file. You'll only be asked to pick a paid plan if you choose to continue.",
-  },
-  {
-    q: "What if my child is already playing for 1–2 years?",
-    a: "We recommend the 3 or 6 month plan. The intermediate track skips Lesson 0 basics and focuses on the weak hand, crossover, and shooting under control.",
-  },
-  {
-    q: "Can two children share one account?",
-    a: "Right now each account is for one player so progress is tracked correctly. We're working on a family plan for siblings.",
-  },
-  {
-    q: "When is live parent webcam view available?",
-    a: "It's in development. The progress dashboard is live today; live webcam view ships with the 6 and 12 month plans first.",
-  },
-];
+import { useTranslation } from "@/components/LanguageContext";
 
 export default function PricingPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="container-narrow space-y-12 py-12 sm:py-16">
       <div className="max-w-3xl space-y-3">
-        <span className="pill">Pricing</span>
-        <h1 className="text-3xl font-bold sm:text-4xl">Choose how long you want to train</h1>
-        <p className="text-white/70">
-          Beginners start with one month free. After that, pick a 3, 6, or 12-month plan —
-          longer plans cost less per month.
-        </p>
+        <span className="pill">{t.pricing.badge}</span>
+        <h1 className="text-3xl font-bold sm:text-4xl">{t.pricing.title}</h1>
+        <p className="text-white/70">{t.pricing.desc}</p>
       </div>
 
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -56,7 +39,7 @@ export default function PricingPage() {
 
               <div className="mt-5">
                 {isFree ? (
-                  <p className="text-3xl font-bold">Free</p>
+                  <p className="text-3xl font-bold">{t.pricing.free}</p>
                 ) : (
                   <p className="text-3xl font-bold">
                     ${plan.priceUSD}
@@ -93,9 +76,9 @@ export default function PricingPage() {
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold">FAQ</h2>
+        <h2 className="text-2xl font-bold">{t.pricing.faqTitle}</h2>
         <div className="grid gap-3 md:grid-cols-2">
-          {faqs.map((f) => (
+          {t.pricing.faqs.map((f) => (
             <div key={f.q} className="card">
               <p className="font-semibold">{f.q}</p>
               <p className="mt-2 text-sm text-white/75">{f.a}</p>
